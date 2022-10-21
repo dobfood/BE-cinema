@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors"; 
 import cookieParser from "cookie-parser";
-import userRoutes from "./routes/user.js"
+import userRoutes from "./routes/user.js";
+import moviesRoutes from "./routes/movies.js"
 import authRoutes from "./routes/auth.js";
 
 const PORT = process.env.PORT || 2212;
@@ -31,13 +32,14 @@ app.use(cors());
 
 app.use('/api/auth',authRoutes)
 app.use('api/user',userRoutes)
-
+app.use('/api/movies',moviesRoutes)
 app.use((err, req, res, next) => {
   const status = err.status || 500;
 
   const message = err.message | "Co gi do sai ";
 
   res.status(status).json({
+
     sucsess: false,
 
     status,

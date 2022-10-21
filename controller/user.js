@@ -1,5 +1,7 @@
-import createError from "../error";
-import User from "../model/user";
+import createError from "../error.js";
+import movies from "../model/movies.js";
+import Movie from "../model/movies.js";
+import User from "../model/user.js";
 const addUser = () => {};
 const getUser = async (req, res, next) => {
   try {
@@ -22,7 +24,7 @@ const deleteUser = async (req, res, next) => {
     return next(createError(403, "chi co the xoa tai khoang cua minh"));
   }
 };
-const updateUser = async (req, res, next) => {
+export const updateUser = async (req, res, next) => {
   if (req.params.id === req.user.id) {
     try {
       const userUpdate = await User.findByIdAndUpdate(
@@ -38,5 +40,32 @@ const updateUser = async (req, res, next) => {
     }
   } else {
     return next(createError(403, "chi co the thay doi tai khoang cua minh"));
+  }
+};
+// const saved = async(req, res, next);
+export const like = async (req, res, next) => {
+  const userId = req.user.id;
+  const movieId = req.params.videoId;
+  try {
+    await movies.findByIdAndUpdate(movieId, {
+      $addToSet: { likes: userId },
+      $pull: { dislikes: userId },
+    });
+    res.status(200).json("the video has been liked");
+  } catch (err) {
+    next(err);
+  }
+};
+export const dislike = async (req, res, next) => {
+  const userId = req.user.id;
+  const movieId = req.params.movieId;
+  try {
+    await Movie.findByIdAndUpdate(movieId, {
+      $addToSet: { dislikes: userId },
+      $pull: { likes: userId },
+    });
+    res.status(200).json("the videl has been disklike");
+  } catch (err) {
+    next(err);
   }
 };

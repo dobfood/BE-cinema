@@ -7,9 +7,11 @@ export const signup = async (req, res, next) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({ ...req.body, password: hash });
+    console.log(newUser)
     await newUser.save();
     res.status(200).json({ success: true, data: newUser });
   } catch (err) {
+    console.log(err)
     next(err);
   }
 };

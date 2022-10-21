@@ -9,7 +9,7 @@ const Movies = new mongoose.Schema(
     time: { type: "String" },
     imageURL: { type: "String" },
     trailerURL: { type: "String", required: true },
-    like: { type: [string], default: [] },
+    like: { type: [String], default: [] },
     dislike: {
       type: [String],
       default: [],
