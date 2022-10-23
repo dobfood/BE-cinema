@@ -13,7 +13,7 @@ const app = express();
 dotenv.config();
 const connect = async () => {
   await mongoose
-    .connect(process.env.DB_MONGOOSE)
+    .connect("mongodb+srv://CaseStudy5:!23456@case-study5.6tr4igy.mongodb.net/?retryWrites=true&w=majority")
     .then(() => {
       console.log("Connect OK");
     })
