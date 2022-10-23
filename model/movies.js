@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Movies = new mongoose.Schema(
   {
+    userId:{type:"String",required:true},
     name: { type: "String", required: true },
     nation: { type: "String", required: true },
     type: { type: "String", required: true },

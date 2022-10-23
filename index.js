@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-
+import helmet from "helmet"
 import dotenv from "dotenv";
 import cors from "cors"; 
 import cookieParser from "cookie-parser";
@@ -23,6 +23,7 @@ const connect = async () => {
 };
 
 connect();
+app.use(helmet())
 
 app.use(cookieParser());
 
