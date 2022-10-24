@@ -1,7 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import helmet from "helmet"
-import dotenv from "dotenv";
 import cors from "cors"; 
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.js";
@@ -10,7 +9,7 @@ import authRoutes from "./routes/auth.js";
 
 const PORT = process.env.PORT || 2212;
 const app = express();
-dotenv.config();
+
 const connect = async () => {
   await mongoose
     .connect("mongodb+srv://CaseStudy5:!23456@case-study5.6tr4igy.mongodb.net/?retryWrites=true&w=majority")
