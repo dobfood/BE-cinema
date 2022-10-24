@@ -7,7 +7,7 @@ import userRoutes from "./routes/user.js";
 import moviesRoutes from "./routes/movies.js"
 import authRoutes from "./routes/auth.js";
 
-const PORT = process.env.PORT || 2212;
+const port = process.env.PORT || 2212;
 const app = express();
 
 const connect = async () => {
@@ -50,6 +50,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, "localhost", () => {
-  console.log("connect ok http://localhost:" + PORT);
+app.listen(port, "localhost", () => {
+  console.log("connect ok http://localhost:" + port);
 });
